@@ -1,0 +1,23 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<form class="my-5" action="" method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {% if fm.non_field.errors %}
+    {% for error in errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+    {% endfor %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <input class="btn btn-success" type="submit" value="Post">
+</form>
+</form>
+{% endblock content %}

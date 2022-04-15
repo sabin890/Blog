@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+{% block content %}
+    <title>Update-Profile</title>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-5">
+                {% csrf_token %}
+                {{pp.title}}<br><br>
+                {{pp.sabin}}<br><br>
+            </div>
+        </div>
+        <input type="submit" value="Update">
+    </form>
+    <a href="{% url 'Blog' %}">Go-Back</a>
+</form>
+</body>
+{% endblock content %}

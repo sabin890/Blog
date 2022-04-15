@@ -1,0 +1,53 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<style>
+  .vl {
+    border-left: 2px solid #008000;
+    border-right: 2px solid #008000;
+    height: 50px;
+  }
+</style>
+{% if perms.home.add_blog %}
+<div class="my-3">
+<a class="btn btn-success" href="{% url 'blog'%}">Add-post</a>
+</div>
+{% endif %}
+
+  <div class="p-2 bg-secondary border">
+    <h2 class="text-center">Blogs</h2>
+  </div>
+  {% if bb %}
+  <div class="row">
+    {% for fm in bb %}
+    <div class="col-sm-4">
+      <div class="card-my-2">
+        <div class="card-footer">
+          <h6 class="text-center">{{fm.title}}</h6>
+          <small class="text-muted">{{fm.date}}</small>
+          <img src="{{fm.photo.url}}" class="card-img-top" height="200px" alt="">
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">{{fm.body}}</small>
+          <small><a href="#">Read more</a></small>
+        </div>
+        {% if user.is_superuser %}
+        <a class="btn btn-warning" href="{% url 'blogupdate' fm.id %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'delete' fm.id %}">Delete</a>
+        {% endif %}
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>No Data</h1>
+  </div>
+  {% endif %}
+</div>
+</div>
+{% endblock content %}

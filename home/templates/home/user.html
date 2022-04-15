@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% if ph %}
+<div class="my-5" >
+    {% for fm in ph %}
+<img src="{{fm.sabin.url}}" class="img-circle" width="304" height="236"> 
+    <small class="text-muted">{{fm.date}}</small>
+    <div class="col-sm-3">
+        <a class="btn btn-danger" href="{% url 'logout' %}">Log Out</a>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

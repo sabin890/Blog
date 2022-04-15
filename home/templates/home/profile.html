@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<form action="" method="post">
+    <div class="my-5" >
+    {% csrf_token %}
+    {% if form.non_field.errors %}
+    {% for error in errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    {{fm.label_tag}}{{fm}}{{fm.errors|striptags}}<br><br>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</div>
+</form>
+{% endblock content %}
