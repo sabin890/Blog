@@ -77,9 +77,9 @@ def user(request):
     std = Port.objects.all()
     for sd in std:
         if str(request.user) == str(sd.title):
-            st=std.sabin
-            return render(request, "home/user.html", {"ph":st})
-    return render(request, "home/user.html", {"ph":"Not found"})
+            st=sd
+            return render(request, "home/user.html", {"ph":st,"name":request.user})
+    return render(request, "home/user.html", {"ph":"No-Profile","name":request.user})
     
 
 # logout
@@ -140,7 +140,7 @@ def update(request,id):
         if pm.is_valid():
             pm.save()
             messages.success(request, "Blog Successfully updated!!!")
-        return HttpResponseRedirect("User/")
+        return HttpResponseRedirect("/User/")
     else:
         ak =Port.objects.get(pk=id)
         pm = Photo(instance=ak)
@@ -151,7 +151,6 @@ def profile(request):
         fm = Photo(request.POST or None, request.FILES)
         if fm.is_valid():
             fm.save()
-        fm = Photo()
     else:
         fm = Photo()
     return render(request,"home/profile.html",{"form":fm})
