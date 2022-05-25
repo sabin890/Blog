@@ -12,23 +12,20 @@
 <a class="btn btn-success" href="{% url 'blog'%}">Add-post</a>
 </div>
 {% endif %}
-
-  <div class="p-2 bg-secondary border">
-    <h2 class="text-center">Blogs</h2>
-  </div>
+    <h2 class="text-center" style="color: #008000;"><b>Blogs</b></h2>
   {% if bb %}
   <div class="row">
     {% for fm in bb %}
-    <div class="col-sm-4">
-      <div class="card-my-2">
+    <div class="col-sm-4 ">
+      <div class="card-my-2 my-3">
         <div class="card-footer">
-          <h6 class="text-center">{{fm.title}}</h6>
-          <small class="text-muted">{{fm.date}}</small>
-          <img src="{{fm.photo.url}}" class="card-img-top" height="200px" alt="">
+          <img src="{{fm.photo.url}}" class="card-img-top" height="300px">
         </div>
         <div class="card-footer">
-          <small class="text-muted">{{fm.body}}</small>
-          <small><a href="#">Read more</a></small>
+          <h6>{{fm.title}}</h6>
+          <small>Posted Date  :{{fm.date}}</small>
+          <small class="text-muted">{{fm.body | truncatewords:20}}</small><br>
+          <small><a href="{% url 'blogdetails' fm.id %}">Read more</a></small>
         </div>
         {% if user.is_superuser %}
         <a class="btn btn-warning" href="{% url 'blogupdate' fm.id %}">Edit</a>

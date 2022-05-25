@@ -1,5 +1,43 @@
 {% extends 'home/base.html' %}
 {% load static %}
 {% block content %}
-<img src="{% static 'home/img/hello.jpg' %}" width="350" height="900">
-{% endblock content %}
+<div class="container">
+<div style="color: rgb(116, 6, 6);" class="text-center">
+    <h1><b>Hello Everyone</b></h1>
+    <h3><b> Welcome to our Webpage</b></h3>
+</div>
+</div>
+<div class="card border-danger mb-3 m-1 my-5" style="max-width:18rem;">
+    <div class="card-header"><b class="text-danger">Html</b></div>
+    <div class="card-body text-danger">
+
+      <p class="card-text">HyperText Markup Language (HTML) is the basic scripting language used by web browsers to render pages on the world wide web. HyperText allows a user to click a link and be redirected to a new page referenced by that link.</p>
+    </div>
+  </div>
+  <div class="card border-secondary mb-3 m-1 my-5" style=" margin: left 10%;max-width: 18rem;">
+    <div class="card-header"><b class="text-primary">Css</b></div>
+    <div class="card-body text-primary">
+      <p class="card-text">Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language such as HTML. CSS is a cornerstone technology of the World Wide Web, alongside HTML and JavaScript.</p>
+    </div>
+  </div>
+  <div class="card border-success mb-3 m-1 my-5" style="max-width: 18rem;">
+    <div class="card-header"><b class="text-warning">JS</b></div>
+    <div class="card-body text-warning">
+      <p class="card-text">JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat.</p>
+    </div>
+  </div>
+  <div class="card border-danger mb-3 m-1 my-5" style="max-width: 18rem;">
+    <div class="card-header"><b class="text-warning">Python</b></div>
+    <div class="card-body text-primary">
+      <p class="card-text">Python is a high-level, interpreted, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation. Python is dynamically-typed and garbage-collected.</p>
+    </div>
+  </div>
+  <div class="card border-warning mb-3 m-1 my-5" style="max-width: 18rem;">
+    <div class="card-header"><b class="text-success">Django</b></div>
+    <div class="card-body text-success">
+      <p class="card-text">Django is a Python-based free and open-source web framework that follows the model–template–views architectural pattern. It is maintained by the Django Software Foundation, an independent organization established in the US as a 501 non-profit. </p>
+    </div>
+  </div>
+  
+  </div>
+{% endblock content %} 

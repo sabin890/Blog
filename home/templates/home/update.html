@@ -7,11 +7,12 @@
             <div class="col-sm-5">
                 {% csrf_token %}
                 {{pp.sabin}}<br><br>
+                {{pp.title}}<br><br>
+                {{pp.write_about_you}}<br><br>
             </div>
         </div>
         <input type="submit" value="Update">
     </form>
     <a href="{% url 'Blog' %}">Go-Back</a>
-</form>
 </body>
 {% endblock content %}

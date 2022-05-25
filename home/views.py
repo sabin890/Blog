@@ -1,11 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render, HttpResponseRedirect, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import Photo, SignUp, Post
+from .forms import Photo, SignUp,Post,Cont,Log
 from .models import Blog, Port
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import  User
 # blogs.
 
 
@@ -31,10 +30,8 @@ def signup(request):
     if request.method == "POST":
         fm = SignUp(request.POST)
         if fm.is_valid():
-            user = fm.save()
-            group = Group.objects.get(name='Auther')
-            user.groups.add(group)
-            HttpResponseRedirect("/login/")
+            fm.save()
+            return redirect("login")
     else:
         fm = SignUp()
     return render(request, "home/signup.html", {"form": fm})
@@ -43,10 +40,14 @@ def signup(request):
 
 
 def contact(request):
-    if request.user.is_superuser == True:
-        return HttpResponseRedirect("/Blog/")
+    if request.method == "POST":
+        fm=Cont(request.POST)
+        if fm.is_valid():
+            fm.save()
+            return redirect("contact")
     else:
-        return render(request, "home/contact.html")
+        fm=Cont()
+        return render(request, "home/contact.html",{"bm":fm})
 
 # log in
 
@@ -54,18 +55,17 @@ def contact(request):
 def log_in(request):
     if not request.user.is_authenticated:
         if request.method == "POST":
-            fm = AuthenticationForm(request=request, data=request.POST)
+            fm = Log(request=request, data=request.POST)
             if fm.is_valid():
                 uname = fm.cleaned_data['username']
                 upass = fm.cleaned_data['password']
                 user = authenticate(username=uname, password=upass)
                 if user is not None:
                     login(request, user)
-                    respon = render(request, "home/user.html",
-                                    {'name': request.user})
-                    respon.set_cookie('name', {request.user})
+                    return render(request, "home/index.html",{'name': request.user})
+                   
         else:
-            fm = AuthenticationForm()
+            fm = Log()
         return render(request, "home/log.html", {"form": fm})
     else:
         return HttpResponseRedirect("/Blog/")
@@ -78,8 +78,9 @@ def user(request):
     for sd in std:
         if str(request.user) == str(sd.title):
             st=sd
-            return render(request, "home/user.html", {"ph":st,"name":request.user})
-    return render(request, "home/user.html", {"ph":"No-Profile","name":request.user})
+            return render(request, "home/prof.html", {"ph":st,"name":request.user})
+    
+    return render(request, "home/prof.html", {"ph":"No-Profile","name":request.user})
     
 
 # logout
@@ -140,7 +141,7 @@ def update(request,id):
         if pm.is_valid():
             pm.save()
             messages.success(request, "Blog Successfully updated!!!")
-        return HttpResponseRedirect("/User/")
+            return redirect("User")
     else:
         ak =Port.objects.get(pk=id)
         pm = Photo(instance=ak)
@@ -151,6 +152,13 @@ def profile(request):
         fm = Photo(request.POST or None, request.FILES)
         if fm.is_valid():
             fm.save()
+            return redirect('User')
     else:
         fm = Photo()
     return render(request,"home/profile.html",{"form":fm})
+
+
+def blogdetails(request,id):
+    post=Blog.objects.get(pk=id)
+    return render(request,"home/blogdetails.html",{"post":post})
+    

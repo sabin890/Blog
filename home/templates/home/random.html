@@ -1,0 +1,27 @@
+<h3 class="text-center my-5">hello {{name}}</h3>
+{% if fm %}
+<div class="row">
+    {% for gg in fm %}
+    <div class="col-sm-4 ">
+        <div class="card-my-2 my-3">
+            <div class="card-footer">
+                <h6>{{gg.username}}</h6>
+                <small class="text-muted">Your previous Bmi<b>{{gg.result}}</b></small><br>
+                <small>
+                    <p>{{gg.suggest}}</p>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<a class="btn btn-danger" href="{% url 'logout' %}">Log-Out</a>
+<a class="btn btn-info" href="{% url 'viewdetails' %}">View-Previous-Bmi</a>

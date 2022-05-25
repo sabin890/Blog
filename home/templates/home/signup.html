@@ -1,12 +1,6 @@
 {% extends 'home/base.html' %}
 {% block content %}
-<style>
-    body{
-        background-color: aquamarine;
-        color: black;
-    }
-</style>
-<form  class = "my-5" action="" method="post" novalidate>
+<form  class = "my-5"  method="post">
     {% csrf_token %}
     {% if form.non_field_errors %}
     {% for error in errors %}
@@ -16,6 +10,5 @@
     {% for fm in form %}
     {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
     {% endfor %}
-    <input type="submit"  class="btn btn-warning sm" value="Submit">
-    <a class="btn btn-danger" href="{% url 'login' %}">Log In</a><br>
+    <input type="submit"  class="btn btn-warning sm" value="Sign-Up">
 {% endblock content %} 

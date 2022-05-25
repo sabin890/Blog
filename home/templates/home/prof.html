@@ -1,0 +1,90 @@
+{% extends 'home/base.html' %}
+{% block content %}
+{% if ph.sabin %}
+<style>
+    .container {
+        margin-top: 20px
+    }
+
+    .stretch-card>.card {
+        width: 500%;
+        min-width: 100%
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #d2d2dc;
+        border-radius: 0
+    }
+
+    .btn-info {
+        color: #fff;
+        background-color: #3da5f4;
+        border-color: #3da5f4
+    }
+
+    .btn {
+        font-size: 0.875rem;
+        line-height: 1;
+        font-weight: 400;
+        padding: .7rem 1.5rem;
+        border-radius: 0.1275rem
+    }
+
+    h6 {
+        font-size: .9375rem
+    }
+</style>
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <div class="col-md-5">
+                <div class="card-footer">
+                    <div class="card-body text-center">
+                        {% csrf_token %}
+                        <div> <img class="topleft" src="{{ph.sabin.url}}" width="200" height="200">
+                            <h4>{{request.user.username}}</h4>
+                        </div>
+                        <div class="border-top pt-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    {% if request.user.is_superuser %}
+                                    <p>Userstatus:<b style="color: brown;">Admin</b></p>
+                                    <p>Email:{{request.user.email}}</p>
+                                    {% else %}
+                                    <p>Userstatus:<b style="color: rgb(42, 165, 48);">Staf</b></p>
+                                    <p>Email:{{request.user.email}}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>About me:{{ph.write_about_you}}</p>
+    </div>
+</div>
+<div class="vf">
+    <a class="btn btn-warning" href="{% url 'update' ph.id %}">Update</a>
+    <a class="btn btn-danger" href="{% url 'logout' %}">Log Out</a>
+</div>
+{% else %}
+<div style="position: sticky;" class="col-sm-3 ">
+    <a class="btn btn-info" href="{% url 'profile' %}">Choose-Profile</a>
+</div>
+{% endif %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

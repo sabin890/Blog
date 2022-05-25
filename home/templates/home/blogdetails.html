@@ -1,0 +1,13 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card-footer my-5" style="width: 70%; margin: auto;">
+    <img class="card-img-top" src="{{post.photo.url}}" alt="Card image cap">
+      <h5 class="card-title my-3">{{post.title}}</h5>
+      <h5 class="card-text"><b>{{post.date}}</b></h5>
+      <p class="card-text ">{{post.body}}</p>
+      
+    </div>
+</div>
+  </div>
+{% endblock %}
