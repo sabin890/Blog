@@ -1,0 +1,6 @@
+asgiref==3.5.0
+Django==4.0.3
+Pillow==9.1.0
+sqlparse==0.4.2
+waitress==2.1.1
+whitenoise==6.1.0
