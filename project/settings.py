@@ -122,7 +122,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILE_DIRS=(
+    os.path.join(BASE_DIR, 'static')
+    )
+STATIC_ROOT=BASE_DIR / 'static'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://django-blog-post123.herokuapp.com'
