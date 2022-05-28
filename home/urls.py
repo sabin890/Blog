@@ -17,4 +17,4 @@ urlpatterns = [
     path("update/<int:id>/",views.update,name='update'),
     path("profile/",views.profile,name='profile'),
     path("blogdetails/<int:id>/",views.blogdetails,name='blogdetails'),
-    ]
+    ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
