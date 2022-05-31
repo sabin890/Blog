@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+# import cloudinary
+# import cloudinary.uploader
+# import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,9 +138,9 @@ CSRF_TRUSTED_ORIGINS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-cloudinary.config( 
-  cloud_name = "django166", 
-  api_key = "685956387844211", 
-  api_secret = "18M6m9a4zr47e5JD6mfzAyL0EsI",
-  secure = True
-)
+# cloudinary.config( 
+#   cloud_name = "django166", 
+#   api_key = "685956387844211", 
+#   api_secret = "18M6m9a4zr47e5JD6mfzAyL0EsI",
+#   secure = True
+# )
